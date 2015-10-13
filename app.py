@@ -17,7 +17,7 @@ def logout():
 
 @app.route('/new')
 def new():
-    return render_template("new.html")
+    return render_template("newstory.html")
 
 @app.route('/story/<id>')
 def story():

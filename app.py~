@@ -19,6 +19,10 @@ def logout():
 def new():
     return render_template("new.html")
 
+@app.route('/story/<id>')
+def story():
+    return render_template("story.html")
+
 if __name__ == "__main__":
     app.debug = True
     app.run('0.0.0.0', port=8000)
