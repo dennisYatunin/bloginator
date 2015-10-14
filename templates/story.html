@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!-- Shows current story, form to add new line -->
+
+<head>
+	<title>Story: {{id}}</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	<div><p>
+	{{ story }}
+	</p>
+	</div>
+	<br>
+	{% if id != None %}
+	<div>
+	<form method = "POST">
+		Add a line: <input type="text" name="line">
+		<input type="submit" name="submit">
+	</form>
+	</div>
+	{% endif %}
+</body>
