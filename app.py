@@ -1,4 +1,5 @@
-from Flask import flask, render_template
+from flask import Flask, render_template, request, session, redirect, url_for
+import utils
 
 app = Flask(__name__)
 
@@ -19,9 +20,23 @@ def logout():
 def new():
     return render_template("newstory.html")
 
-@app.route('/story/<id>')
-def story():
-    return render_template("story.html")
+@app.route('/story')
+@app.route('/story/<ID>', methods=['GET','POST'])
+def story(ID = None):
+    story = ""
+    if ID == None: #or if id does not exist?
+	story= "ERROR not a valid story"
+    else:
+	newline = ""
+	if request.method == 'POST':
+	    newline = request.form['line']
+	    #sanitize newline
+	    #run method to add line to database
+	#run method to get story based on id
+	#temp until those things exist
+	story = "Mary had a little lamb. "
+	story += newline
+    return render_template("story.html", id = ID, story = story)
 
 if __name__ == "__main__":
     app.debug = True
