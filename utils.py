@@ -12,7 +12,7 @@ def getStory()
     c.execute('SELECT data FROM lines')
     lines = c.fetchall()
     return lines
-    
+
 }
 
 

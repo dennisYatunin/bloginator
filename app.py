@@ -10,7 +10,23 @@ def home():
 
 @app.route('/login')
 def login():
-    return render_template("login.html")
+    if request_method == "GET":
+        return render_template("login.html")
+    else:
+        username = request.form['username']
+        password = request.form['password']
+        button = request.form['button']
+        if button == "cancel":
+            return redirect(url_for('home'))
+            
+        if utils.auth(username, password):
+            session['username'] = username
+            session['password'] = password
+            return redirect(url_for('home'))
+        else 
+    
+                
+    
 
 @app.route('/logout')
 def logout():
