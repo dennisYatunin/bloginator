@@ -3,13 +3,13 @@
 {% block title %}Story {{id}}{% endblock %}
 {% block content %}
 <!-- Shows current story, form to add new line -->
-	<div><p>
+	<div id="story"><p>
 	{{ story }}
 	</p>
-	</div>
+
 	<br>
 	{% if id != None %}
-	<div>
+	<hr>
 	<form method = "POST">
 		Add a line: <input type="text" name="line">
 		<input type="submit" name="submit">
