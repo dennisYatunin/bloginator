@@ -8,8 +8,14 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
-@app.route('/login')
+@app.route('/login', method=['GET','POST'])
 def login():
+    # if request.method = 'POST':
+    #     user = request.form['username']
+    #     pswd = request.form['password']
+    #     if(util.auth(user,pswd)){
+    #         session['loggedin']= True
+            
     return render_template("login.html")
 
 @app.route('/logout')
@@ -40,4 +46,5 @@ def story(ID = None):
 
 if __name__ == "__main__":
     app.debug = True
+    app.secret_key = "???"
     app.run('0.0.0.0', port=8000)
