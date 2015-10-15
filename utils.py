@@ -1,16 +1,25 @@
-import sqlite3 as lite
-import sys
 
-con = None
-try:
-    con = lite.connect('blog.db')
+import sqlite3
+conn = sqlite3.connect("blog.db")
+c = conn.cursor()
+#takes in username and pw (plaintext for now) and returns boolean
+#if credentials are valid
 
-    cur = con.connect()
+
 def getStory()
 {
-    curs.con.cursor()
-    cur.execute('SELECT data FROM lines')
-    lines = cur.fetchall()
+
+    c.execute('SELECT data FROM lines')
+    lines = c.fetchall()
     return lines
     
 }
+
+
+def auth(user, pw):    
+    q = "SELECT * FROM users where username = ? and pw = ? "
+    result = c.execute(q, (user, pw) )
+    return len(result) != 0
+
+
+
