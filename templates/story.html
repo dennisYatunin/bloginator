@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<!-- Shows current story, form to add new line -->
+{% extends "base.html" %}
 
-<head>
-	<title>Story: {{id}}</title>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% block title %}Story {{id}}{% endblock %}
+{% block content %}
+<!-- Shows current story, form to add new line -->
 	<div><p>
 	{{ story }}
 	</p>
@@ -19,4 +16,4 @@
 	</form>
 	</div>
 	{% endif %}
-</body>
+{% endblock %}
