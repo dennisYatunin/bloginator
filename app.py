@@ -10,19 +10,21 @@ def home():
 
 @app.route('/login', method=['GET','POST'])
 def login():
-<<<<<<< HEAD
+
     if request_method == "GET":
         return render_template("login.html")
     else:
         username = request.form['username']
         password = request.form['password']
         button = request.form['button']
+        userid = utils.auth(username, password):
         if button == "cancel":
             return redirect(url_for('home'))
             
-        if utils.auth(username, password):
+        if userid != -1
             session['username'] = username
             session['password'] = password
+            session['userid'] = userid
             return redirect(url_for('home'))
         else:
             error = "Bad username or password"
