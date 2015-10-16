@@ -16,7 +16,7 @@ body {
 
 .bar ul {
     padding: 40px;
- 
+
     list-style-type: none;
     font-size: 30px;
     text-align: center;
@@ -43,4 +43,17 @@ li, li > a {
     padding: 50px;
 }
 
-
+.button {
+  display: block;
+  height: 30px;
+  width: 125px;
+  background: #297A4A;
+  border: 2px solid rgba(33, 68, 72, 0.59);
+  color: rgba(0, 0, 0, 0.55);
+  text-align: center;
+  font: bold 1em/15px Georgia, serif;
+  background: linear-gradient(top, #34696f, #2f5f63);
+  border-radius: 25px;
+  box-shadow: 0 5px 0 #1b383b;
+  text-shadow: 0 2px 2px rgba(255, 255, 255, 0.2);
+}
