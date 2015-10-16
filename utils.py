@@ -7,10 +7,14 @@ c = conn.cursor()
 
 
 def getStory(story_id):
-
-    c.execute('SELECT data FROM lines')
-    lines = c.fetchall()
-    return lines
+	c.execute('SELECT data FROM lines WHERE story_id = ?', (str(story_id)))
+	lines = c.fetchall()[0]
+	print lines
+	story = ""
+	for i in lines:
+		print i
+		story += i[0] + " \n"
+	return  story
     
 
 #if valid cred, return user_id
