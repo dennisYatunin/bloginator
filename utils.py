@@ -6,20 +6,22 @@ c = conn.cursor()
 #if credentials are valid
 
 
-def getStory()
-{
+def getStory(story_id):
 
     c.execute('SELECT data FROM lines')
     lines = c.fetchall()
     return lines
     
-}
 
-
+#if valid cred, return user_id
+#else return -1
 def auth(user, pw):    
-    q = "SELECT * FROM users where username = ? and pw = ? "
-    result = c.execute(q, (user, pw) )
-    return len(result) != 0
+    q = "SELECT rowid FROM users where username = ? and pw = ? "
+    c.execute(q, (user, pw) )
+    result = c.fetchall()
+    if len(result) == 1:
+    	return result[0][0]
+    return -1
 
 
 
