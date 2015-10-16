@@ -24,9 +24,9 @@ def login():
             session['username'] = username
             session['password'] = password
             return redirect(url_for('home'))
-        else 
-    
-                
+        else:
+            error = "Bad username or password"
+            return render_template("login.html", err = error)
     
 
     # if request.method = 'POST':
@@ -38,9 +38,12 @@ def login():
     # return render_template("login.html")
 
 
-@app.route('/logout')
+@app.route("/logout")            
 def logout():
-    return render_template("logout.html")
+    session.pop('username', None)
+    return redirect("logout.html")
+    
+
 
 @app.route('/new')
 def new():
