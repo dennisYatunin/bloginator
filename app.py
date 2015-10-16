@@ -8,20 +8,20 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
-@app.route('/login', method=['GET','POST'])
+@app.route('/login', methods=['GET','POST'])
 def login():
 
-    if request_method == "GET":
+    if request.method == "GET":
         return render_template("login.html")
     else:
         username = request.form['username']
         password = request.form['password']
         button = request.form['button']
-        userid = utils.auth(username, password):
+        userid = utils.auth(username, password)
         if button == "cancel":
             return redirect(url_for('home'))
             
-        if userid != -1
+        if userid != -1:
             session['username'] = username
             session['password'] = password
             session['userid'] = userid
