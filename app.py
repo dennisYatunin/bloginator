@@ -19,7 +19,7 @@ def login():
         userid = utils.auth(username, password)
         if button == "cancel":
             return redirect(url_for('home'))
-            
+
         if userid != -1:
             session['username'] = username
             session['password'] = password
@@ -31,24 +31,27 @@ def login():
     else:
         return render_template("login.html")
 
+
     # if request.method = 'POST':
     #     user = request.form['username']
     #     pswd = request.form['password']
     #     if(util.auth(user,pswd)){
     #         session['loggedin']= True
-            
+
     # return render_template("login.html")
 
 
-@app.route("/logout")            
+@app.route("/logout")
 def logout():
     session.pop('username', None)
     return redirect("logout.html")
-    
 
 
-@app.route('/new')
+
+@app.route('/new', method='POST')
 def new():
+    title = request.form['title']
+    line = request.form['line']
     return render_template("newstory.html")
 
 @app.route('/register')
