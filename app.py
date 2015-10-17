@@ -54,7 +54,7 @@ def register():
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
-        button = request.form['button']
+      
         if button == "cancel":
             return redirect(url_for('home'))
         if (request.form['password2'] != password):
