@@ -11,14 +11,11 @@ def home():
 @app.route('/login', methods=['GET','POST'])
 def login():
 
-    
     if request.method == "POST":
-        username = request.form['username']
-        password = request.form['password']
-        button = request.form['button']
+        username = request.form["username"]
+        password = request.form["password"]
+
         userid = utils.auth(username, password)
-        if button == "cancel":
-            return redirect(url_for('home'))
 
         if userid != -1:
             session['username'] = username
@@ -46,9 +43,7 @@ def logout():
     session.pop('username', None)
     return redirect("logout.html")
 
-
-
-@app.route('/new', method='POST')
+@app.route('/new', methods='POST')
 def new():
     title = request.form['title']
     line = request.form['line']
