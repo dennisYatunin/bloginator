@@ -11,9 +11,8 @@ def home():
 @app.route('/login', methods=['GET','POST'])
 def login():
 
-    if request.method == "GET":
-        return render_template("login.html")
-    else:
+    
+    if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
         button = request.form['button']
@@ -27,9 +26,10 @@ def login():
             session['userid'] = userid
             return redirect(url_for('home'))
         else:
-            error = "Bad username or password"
-            return render_template("login.html", err = error)
-    
+            return """ <h1> Bad Username or Password </h1> """
+
+    else:
+        return render_template("login.html")
 
     # if request.method = 'POST':
     #     user = request.form['username']
@@ -50,6 +50,23 @@ def logout():
 @app.route('/new')
 def new():
     return render_template("newstory.html")
+
+@app.route('/register')
+def register():
+    if request.method == "POST":
+        username = request.form['username']
+        password = request.form['password']
+        button = request.form['button']
+        if button == "cancel":
+            return redirect(url_for('home'))
+        if (request.form['password2'] != password):
+            return """ <h1> Error, passwords are not the same </h1> """
+        else:
+            utils.addUser(username, password)
+            return redirect(url_for('home'))
+    else:
+        return render_template("register.html")
+
 
 @app.route('/story')
 @app.route('/story/<ID>', methods=['GET','POST'])

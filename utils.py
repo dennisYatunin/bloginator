@@ -29,5 +29,8 @@ def auth(user, pw):
     	return result[0][0]
     return -1
 
+def addUser(user, pw):
+    c.execute("INSERT INTO users VALUES (?, ?)", (user, pw))
+    
 
 
