@@ -13,7 +13,7 @@ def home():
     return render_template("home.html", storyDict=storyDict)
 
 ## Checks the username and password with the utils function auth()
-    
+
 @app.route('/login', methods=['GET','POST'])
 def login():
     if request.method == "POST":
@@ -57,9 +57,9 @@ def register():
         username = request.form['username']
         password = request.form['password']
         if (request.form['password2'] != password):
-            return render_template("register.html", err="Passwords are not the same")
+            return render_template("register.html", err="Error, passwords are not the same")
         if (utils.auth(username, password) != -1):
-            return render_template("register.html", err="User already exists")
+            return render_template("register.html", err="Error, user already exists")
         else:
             print username + " " + password
             utils.addUser(username, password)

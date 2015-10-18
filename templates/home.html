@@ -3,10 +3,13 @@
 {% block title %} Home {% endblock %}
 {% block content %}
 
+<center>
+	<h1> Stories </h1>
+	<hr>
+	<ul>
+	{% for id in storyDict %}
+		<a href="/story/{{id}}" class ="home"><li>{{ storyDict[id] }}</li></a><br>
+	{% endfor %}
 
-{% for id in storyDict %}
-<a href="/story/{{id}}">{{ storyDict[id] }}</a> <br>
-{% endfor %}
-
-
+</center>
 {% endblock %}
