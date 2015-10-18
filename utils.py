@@ -86,12 +86,12 @@ def auth(user, pw):
 	return -1
 # TESTING- DONE
 # print "testing auth"
-# print auth("loren", "loren") #returns id 1 
-# print auth("yo", "no") #returns -1 
+# print auth("loren", "loren") #returns id 1
+# print auth("yo", "no") #returns -1
 
 
 
-#TODO - check if user already exists 
+#TODO - check if user already exists
 def addUser(user, pw):
 	conn = sqlite3.connect("blog.db", check_same_thread=False)
 	c = conn.cursor()
@@ -100,4 +100,4 @@ def addUser(user, pw):
 	conn.close()
 # #Testing - DONE
 # print addUser("test", "test")
-# print auth("test", "test") 
+# print auth("test", "test")

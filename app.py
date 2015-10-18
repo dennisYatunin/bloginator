@@ -13,7 +13,7 @@ def home():
     return render_template("home.html", storyDict=storyDict)
 
 ## Checks the username and password with the utils function auth()
-    
+
 @app.route('/login', methods=['GET','POST'])
 def login():
     if request.method == "POST":
