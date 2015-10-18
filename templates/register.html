@@ -9,6 +9,11 @@
 <body>
 <center>
 <h1>Register</h1>
+<hr>
+{% if err %}
+<h3>{{err}}</h3>
+<hr>
+{% endif %}
 <form  method="POST">
 <input type="text" name="username" placeholder="Username" required>
 <br>
@@ -16,16 +21,13 @@
 <br>
 <input type="password" name ="password2" placeholder ="Reenter
 Password" required>
-<br>
+<br><br>
 
-
-<input type="submit" name="button" value="submit">
+<input type="submit" name="button" value="submit" class="button">
 
 </form>
 
 
-
-<hr>
 </center>
 </body>
 
