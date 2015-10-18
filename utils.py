@@ -21,6 +21,29 @@ def getStory(story_id):
 # print getStory(1) #returns all the lines
 # print getStory(2) #return nothing :)
 
+def getTitle(story_id):
+	conn = sqlite3.connect("blog.db", check_same_thread=False)
+	c = conn.cursor()
+	q = "SELECT title FROM stories WHERE rowid = ? ;"
+	c.execute(q, (story_id,))
+	title = c.fetchall()[0][0]
+	return title
+#TESTING -done
+print getTitle(1)
+
+def getAllIds():
+	conn = sqlite3.connect("blog.db", check_same_thread=False)
+	c = conn.cursor()
+	q = "SELECT rowid FROM stories;"
+	c.execute(q)
+	raw_ids = c.fetchall()
+	ids = []
+	for i in raw_ids:
+		ids += [ i[0] ]
+	return ids
+# #TESTING - DONE
+# print getAllIds()
+
 def newLine(story_id, user_id, line):
 	conn = sqlite3.connect("blog.db", check_same_thread=False)
 	c = conn.cursor()

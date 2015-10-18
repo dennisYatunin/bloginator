@@ -2,5 +2,11 @@
 
 {% block title %} Home {% endblock %}
 {% block content %}
-<a href="/story/1"> Temp Story Page</a>
+
+
+{% for id in storyDict %}
+<a href="/story/{{id}}">{{ storyDict[id] }}</a> <br>
+{% endfor %}
+
+
 {% endblock %}

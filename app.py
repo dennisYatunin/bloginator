@@ -6,7 +6,11 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template("home.html")
+    valid_stories = utils.getAllIds()
+    storyDict = {}
+    for i in valid_stories:
+        storyDict[i] = utils.getTitle(i)
+    return render_template("home.html", storyDict=storyDict)
 
 ## Checks the username and password with the utils function auth()
     
@@ -68,14 +72,16 @@ def story(ID = None):
 	story= "ERROR not a valid story"
     else:
 	newline = ""
-	if request.method == 'POST':
-	    newline = request.form['line']
+	if (request.method == 'POST' and session['logged_in'] == True):
+		print "somehow got here. session[logged_in] = " + session[logged_in]
+		newline = request.form['line']
+		utils.newLine(ID, session['userid'], newline)
 	    #sanitize newline
 	    #run method to add line to database
 	#run method to get story based on id
 	#temp until those things exist
 	story = utils.getStory(ID)
-	story += newline
+	#story += newline
     return render_template("story.html", id = ID, story = story)
 
 if __name__ == "__main__":
