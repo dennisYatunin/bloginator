@@ -1,46 +1,80 @@
 
 import sqlite3
 
-conn = sqlite3.connect("blog.db", check_same_thread=False)
-c = conn.cursor()
-
-#takes in username and pw (plaintext for now) and returns boolean
-#if credentials are valid
 
 
-
-#takes in username and pw (plaintext for now) and returns userid or -1 if invalid
-#if credentials are valid
-
+#take in story id and return string of all lines for that story
 def getStory(story_id):
-
+	conn = sqlite3.connect("blog.db", check_same_thread=False)
+	c = conn.cursor()
 	c.execute('SELECT data FROM lines WHERE story_id = ?;', (str(story_id)))
-	lines = c.fetchall()[0]
-	print lines
+	lines = c.fetchall()
+	#print lines
 	story = ""
 	for i in lines:
-		print i
+		#print i
 		story += i[0] + " \n"
-		conn.commit()
+	conn.close()
 	return  story
+#testing - DONE
+# print "testing getStory"
+# print getStory(1) #returns all the lines
+# print getStory(2) #return nothing :)
+
+def newLine(story_id, user_id, line):
+	conn = sqlite3.connect("blog.db", check_same_thread=False)
+	c = conn.cursor()
+	q = "INSERT INTO lines VALUES (?, ?, ?);"
+	c.execute(q, (story_id, user_id, line))
 	conn.commit()
+	conn.close()
+#TESTING - done
+# print newLine(1,6,"newline added thru function")
+# print getStory(1)
 
-
-
+def newStory(title):
+	conn = sqlite3.connect("blog.db", check_same_thread=False)
+	c = conn.cursor()
+	q = "INSERT INTO stories VALUES ( ? );"
+	c.execute(q, (title,) )
+	q = "SELECT rowid FROM stories WHERE title = ? ;"
+	c.execute(q, (title,) )
+	result = c.fetchall()
+	conn.commit()
+	conn.close()
+	return result[0][0]
+# TESTING
+# x = newStory("once upon a time.")
+# print x
+# print newLine(x, 1, "newline for new story")
+# print getStory(x)
 
 #if valid cred, return user_id
 #else return -1
 def auth(user, pw):
+	conn = sqlite3.connect("blog.db", check_same_thread=False)
+	c = conn.cursor()
+	q = "SELECT rowid FROM users where username = ? and pw = ?;"
+	c.execute(q, (user, pw) )
+	result = c.fetchall()
+	if len(result) == 1:
+		return result[0][0]
+	conn.close()
+	return -1
+# TESTING- DONE
+# print "testing auth"
+# print auth("loren", "loren") #returns id 1 
+# print auth("yo", "no") #returns -1 
 
-    q = "SELECT rowid FROM users where username = ? and pw = ?;"
-    c.execute(q, (user, pw) )
-    result = c.fetchall()
-    if len(result) == 1:
-    	return result[0][0]
-	conn.commit()
-    return -1
 
+
+#TODO - check if user already exists 
 def addUser(user, pw):
-    c.execute("INSERT INTO users VALUES (?, ?);", (user, pw))
-    conn.commit()
-
+	conn = sqlite3.connect("blog.db", check_same_thread=False)
+	c = conn.cursor()
+	c.execute("INSERT INTO users VALUES (?, ?);", (user, pw))
+	conn.commit()
+	conn.close()
+# #Testing - DONE
+# print addUser("test", "test")
+# print auth("test", "test") 
