@@ -42,10 +42,12 @@ def logout():
 
 @app.route('/new', methods=['GET','POST'])
 def new():
-    if request.method == 'POST':
-        title = request.form['title']
-        line = request.form['line']
-    return render_template("newstory.html")
+	if request.method == 'POST' and session['logged_in'] == True:
+		title = request.form['title']
+		line = request.form['line']
+		storyId = utils.newStory(title)
+		utils.newLine(storyId, session['userid'], line)
+	return render_template("newstory.html")
 
 
 # Very similar to log in, just checks whether the two passwords are the same, then adds the user using a utils function
@@ -73,7 +75,6 @@ def story(ID = None):
     else:
 	newline = ""
 	if (request.method == 'POST' and session['logged_in'] == True):
-		print "somehow got here. session[logged_in] = " + session[logged_in]
 		newline = request.form['line']
 		utils.newLine(ID, session['userid'], newline)
 	    #sanitize newline
