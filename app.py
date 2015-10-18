@@ -43,12 +43,9 @@ def new():
         line = request.form['line']
     return render_template("newstory.html")
 
-<<<<<<< HEAD
+
 # Very similar to log in, just checks whether the two passwords are the same, then adds the user using a utils function
-@app.route('/register')
-=======
 @app.route('/register', methods = ['GET', 'POST'])
->>>>>>> d8891613cecf9f665eb634a629b163bc79ea7a9e
 def register():
     if request.method == "POST":
         username = request.form['username']
