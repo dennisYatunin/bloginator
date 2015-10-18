@@ -9,6 +9,10 @@
 <body>
 <center>
 <h1>Register</h1>
+  {%if err %}
+  <h3>{{err}}</h3>
+  <hr>
+  {% endif %}
 <form  method="POST">
 <input type="text" name="username" placeholder="Username" required>
 <br>

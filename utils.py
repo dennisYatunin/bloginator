@@ -45,12 +45,12 @@ def getAllIds():
 # print getAllIds()
 
 def newLine(story_id, user_id, line):
-	conn = sqlite3.connect("blog.db", check_same_thread=False)
-	c = conn.cursor()
-	q = "INSERT INTO lines VALUES (?, ?, ?);"
-	c.execute(q, (story_id, user_id, line))
-	conn.commit()
-	conn.close()
+    conn = sqlite3.connect("blog.db", check_same_thread=False)
+    c = conn.cursor()
+    q = "INSERT INTO lines VALUES (?, ?, ?);"
+    c.execute(q, (story_id, user_id, line))
+    conn.commit()
+    conn.close()
 #TESTING - done
 # print newLine(1,6,"newline added thru function")
 # print getStory(1)
