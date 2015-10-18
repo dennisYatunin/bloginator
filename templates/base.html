@@ -8,8 +8,12 @@
 	<ul>
 		<li><a href="/home">Find a Story</a></li>
 		<li><a href="/new">Start a Story</a></li>
+		{% if session.logged_in %}
+		<li><a href="/logout">Logout</a></li>
+		{% else %}
 		<li><a href="/login">Login</a></li>
 		<li><a href="/register">Register</a></li>
+		{% endif %}
 	</ul>
 	</div><br>
 	<div class="main">

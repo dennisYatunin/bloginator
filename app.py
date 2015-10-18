@@ -16,8 +16,7 @@ def login():
 
         userid = utils.auth(username, password)
         if userid != -1:
-            session['username'] = username
-            session['password'] = password
+            session['logged_in'] = True
             session['userid'] = userid
             return redirect(url_for('home'))
         else:
@@ -28,8 +27,7 @@ def login():
 
 @app.route("/logout")
 def logout():
-    session.pop('username', None)
-    session.pop('password', None)
+    session['logged_in'] = False
     session.pop('userid', None)
     return redirect("login")
 
@@ -69,7 +67,7 @@ def story(ID = None):
 	    #run method to add line to database
 	#run method to get story based on id
 	#temp until those things exist
-	story = "Mary had a little lamb. "
+	story = utils.getStory(ID)
 	story += newline
     return render_template("story.html", id = ID, story = story)
 

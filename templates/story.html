@@ -8,13 +8,15 @@
 	</p>
 
 	<br>
-	{% if id != None %}
 	<hr>
+	{% if session.logged_in %}
 	<form method = "POST">
 		Add a line: <input type="text" name="line">
 		<br><br>
 		<input type="submit" name="button" value="submit">
 	</form>
+	{% else %}
+	Please <a href="/login">login</a> or <a href="/register">register</a> to edit this story.
 	</div>
 	{% endif %}
 {% endblock %}
