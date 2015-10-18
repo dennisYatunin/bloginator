@@ -1,6 +1,6 @@
 
 import sqlite3
-conn = sqlite3.connect("blog.db")
+conn = sqlite3.connect("blog.db", check_same_thread=False)
 c = conn.cursor()
 
 #takes in username and pw (plaintext for now) and returns boolean
@@ -31,8 +31,8 @@ def auth(user, pw):
     if len(result) == 1:
     	return result[0][0]
 	conn.commit()
-	return -1
+    return -1
 
 def addUser(user, pw):
     c.execute("INSERT INTO users VALUES (?, ?);", (user, pw))
-	conn.commit()
+    conn.commit()

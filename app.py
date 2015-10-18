@@ -10,13 +10,11 @@ def home():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
 
         userid = utils.auth(username, password)
-
         if userid != -1:
             session['username'] = username
             session['password'] = password
@@ -28,38 +26,29 @@ def login():
     else:
         return render_template("login.html")
 
-
-    # if request.method = 'POST':
-    #     user = request.form['username']
-    #     pswd = request.form['password']
-    #     if(util.auth(user,pswd)){
-    #         session['loggedin']= True
-
-    # return render_template("login.html")
-
-
 @app.route("/logout")
 def logout():
     session.pop('username', None)
-    return redirect("logout.html")
+    session.pop('password', None)
+    session.pop('userid', None)
+    return redirect("login")
 
-@app.route('/new', methods='POST')
+@app.route('/new', methods=['GET','POST'])
 def new():
-    title = request.form['title']
-    line = request.form['line']
+    if request.method == 'POST':
+        title = request.form['title']
+        line = request.form['line']
     return render_template("newstory.html")
 
-@app.route('/register')
+@app.route('/register', methods = ['GET', 'POST'])
 def register():
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
-
-        if button == "cancel":
-            return redirect(url_for('home'))
         if (request.form['password2'] != password):
             return """ <h1> Error, passwords are not the same </h1> """
         else:
+            print username + " " + password
             utils.addUser(username, password)
             return redirect(url_for('home'))
     else:
