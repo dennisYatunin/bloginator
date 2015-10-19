@@ -10,10 +10,10 @@ def getStory(story_id):
 	c.execute('SELECT data FROM lines WHERE story_id = ?;', (str(story_id)))
 	lines = c.fetchall()
 	#print lines
-	story = ""
+	story = []
 	for i in lines:
 		#print i
-		story += i[0] + " \n"
+		story += [ i[0] ]
 	conn.close()
 	return  story
 #testing - DONE
