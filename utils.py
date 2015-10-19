@@ -91,13 +91,19 @@ def auth(user, pw):
 
 
 
-#TODO - check if user already exists
+#Checks if user exists in the database
+#If not, add them
 def addUser(user, pw):
 	conn = sqlite3.connect("blog.db", check_same_thread=False)
 	c = conn.cursor()
+	c.execute("SELECT rowid FROM users where username = ? ;", (user,))
+	result = c.fetchall()
+	if len(result) > 0:
+		return False # user already exists
 	c.execute("INSERT INTO users VALUES (?, ?);", (user, pw))
 	conn.commit()
 	conn.close()
+	return True
 # #Testing - DONE
 # print addUser("test", "test")
 # print auth("test", "test")

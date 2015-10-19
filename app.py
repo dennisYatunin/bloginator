@@ -58,12 +58,12 @@ def register():
         password = request.form['password']
         if (request.form['password2'] != password):
             return render_template("register.html", err="Error, passwords are not the same")
-        if (utils.auth(username, password) != -1):
-            return render_template("register.html", err="Error, user already exists")
         else:
-            print username + " " + password
-            utils.addUser(username, password)
-            return redirect(url_for('new'))
+			print username + " " + password
+			addedUser = utils.addUser(username, password) #boolean if user could be added
+			if (not addedUser): #user already existed in the database.
+				return render_template("register.html", err="Error, user already exists")
+			return redirect(url_for('new'))
     else:
         return render_template("register.html")
 
