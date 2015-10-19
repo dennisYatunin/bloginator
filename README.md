@@ -1,6 +1,7 @@
-# bloginator
+# BLOGINATOR
 
 ## Description
+Add lines to an existing story or create a new one.
 
 ## Collaborators
 |                                       |   **Member**   |                   **GitHub**                 |            **Role**            |
@@ -10,14 +11,10 @@
 | <img src="images/lorenmaggiore.png" width="100" height="100" /> | Loren Maggiore    |[`@lorenrose1013`](https://github.com/lorenrose1013)| Backend |
 | <img src="images/nicholasyang.png" width="100" height="100" /> | Nicholas Yang  |[`@NicholasLYang`](https://github.com/NicholasLYang)        | Middleware  |
 
-## Team
-* Leader: Yasmeen Roumie
-* UX: Daisy Barbanel
-* Backend: Loren Maggiore 
-* Middleware: Nicholas Yang
-
 ## How to Use
-* Add lines to an existing story or start a new one.
+1. Make an account or log in.
+2. Go to "Find a Story" to add to an existing story.
+3. Go to "Start a Story" to begin writing a new one.
 
 ## Timeline
 * 10/09: Brainstorm ideas for project
