@@ -45,7 +45,7 @@ a:hover{
 .bar li, li > a {
     color: white;
     display: inline;
-    padding: 10px;
+    padding: 20px;
     font-weight: normal;
 }
 
