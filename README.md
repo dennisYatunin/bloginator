@@ -5,7 +5,7 @@
 ## Collaborators
 |                                       |   **Member**   |                   **GitHub**                 |            **Role**            |
 |---------------------------------------|:--------------:|:--------------------------------------------:|:------------------------------:|
-| <img src="images/yasmeenroumie.jpg" width="200" height="200" /> | Yasmeen Roumie   |[`@y4smeen`](https://github.com/y4smeen)        | Leader  |
+| <img src="images/yasmeenroumie.jpg" width="480" height="296" /> | Yasmeen Roumie   |[`@y4smeen`](https://github.com/y4smeen)        | Leader  |
 | ![DB](images/daisybarbanel.jpg =200x200) | Daisy Barbanel |[`@daisyb`](https://github.com/daisyb)    | UX  |
 | ![LM](images/lorenmaggiore.jpg =200x200) | Loren Maggiore    |[`@lorenrose1013`](https://github.com/lorenrose1013)| Backend |
 | ![NY](images/nicholasyang.jpg =200x200) | Nicholas Yang  |[`@NicholasLYang`](https://github.com/NicholasLYang)        | Middleware  |
