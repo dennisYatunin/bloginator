@@ -1,5 +1,12 @@
+from os import urandom
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+from hashlib import sha512
+from uuid import uuid4
+from re import search
+
+# a 32-byte key that should be used to secure the Flask session
+secret_key = urandom(32);
 
 #establish access to the mongo database
 client = MongoClient()
@@ -27,23 +34,52 @@ def getAllIds():
 
 
 def newLine(story_id, user_id, line):
-	db.lines.insert_one({
-		'story_id':ObjectId(story_id),
-		'user_id':ObjectId(story_id),
-		'data':line
+	return str(
+		db.lines.insert_one({
+			'story_id':ObjectId(story_id),
+			'user_id':ObjectId(story_id),
+			'data':line
+			}).inserted_id
+		)
+
+
+def editLine(line_id, editedLine):
+	db.lines.update(
+		{'_id':ObjectId(line_id)},
+		{'$set':{'data':editedLine}}
+		)
+
+
+def removeLine(line_id):
+	db.lines.remove({
+		'_id':ObjectId(line_id)
 		})
 
 
 def newStory(title):
-	return str(db.stories.insert_one({
-		'title':title
-		}).inserted_id)
+	return str(
+		db.stories.insert_one({
+			'title':title
+			}).inserted_id
+		)
+
+
+def removeStory(story_id):
+	db.stories.remove({
+		'_id':ObjectId(story_id)
+		})
+	db.lines.remove({
+		'story_id':ObjectId(story_id)
+		})
 
 #if valid cred, return user_id
 #else return -1
 def auth(user, pw):
-	result = db.users.find_one({'username':user, 'pw':pw})
-	if result:
+	result = db.users.find_one({'username':user})
+	if (
+		result and
+		sha512((pw + result['salt']) * 10000).hexdigest() == result['hash']
+		):
 		return str(result['_id'])
 	return -1
 
@@ -53,8 +89,25 @@ def addUser(user, pw):
 	result = db.users.find_one({'username':user})
 	if result:
 		return False # user already exists
+	salt = uuid4().hex
 	db.users.insert_one({
 		'username':user,
-		'pw':pw
+		'salt':salt,
+		'hash':sha512((pw + salt) * 10000).hexdigest()
 		})
 	return True
+
+
+def registrationError(user, pw, pw2):
+	if pw != pw2:
+		return 'Error: Passwords are not the same.'
+	if len(username) < 1:
+		return 'Error: Username must be at least 1 character long.'
+	if len(password) < 8:
+		return 'Error: Password must be at least 8 characters long.'
+	if not (
+		bool(search('[0-9]', password)) and
+		bool(search('[a-zA-Z]', password))
+		):
+		return 'Error: Password must contain both letters and digits.'
+	return None

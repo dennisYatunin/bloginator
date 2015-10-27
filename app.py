@@ -3,7 +3,6 @@ import utils
 
 app = Flask(__name__)
 
-
 @app.route('/')
 @app.route('/home')
 def home():
@@ -26,7 +25,10 @@ def login():
             session['userid'] = userid
             return redirect(url_for('home'))
         else:
-            return render_template("login.html", err="Incorrect password or username")
+            return render_template(
+                "login.html",
+                err="Incorrect password or username"
+                )
     else:
         return render_template("login.html")
 
@@ -60,13 +62,18 @@ def register():
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
-        if (request.form['password2'] != password):
-            return render_template("register.html", err="Error, passwords are not the same")
+        password2 = request.form['password2']
+        error = utils.registrationError(username, password, password2)
+        if error:
+            return render_template("register.html", err=error)
         else:
             print username + " " + password
-            addedUser = utils.addUser(username, password)
-            if (not addedUser):  # user already existed in the database.
-                return render_template("register.html", err="User already exists")
+            addedUser = utils.addUser(username, password) #could user be added
+            if (not addedUser): #user already existed in the database.
+                return render_template(
+                    "register.html",
+                    err="Error, user already exists"
+                    )
             return redirect(url_for('new'))
     else:
         return render_template("register.html")
