@@ -37,7 +37,7 @@ def newLine(story_id, user_id, line):
 	return str(
 		db.lines.insert_one({
 			'story_id':ObjectId(story_id),
-			'user_id':ObjectId(story_id),
+			'user_id':ObjectId(user_id),
 			'data':line
 			}).inserted_id
 		)
