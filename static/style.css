@@ -109,6 +109,7 @@ a:hover{
    padding:20px;
    width:300px;
    }
+
 .form-field {
    border: 2px solid #c9b7a2;
    background: #e4d5c3;
@@ -123,10 +124,12 @@ a:hover{
    margin-bottom:20px;
    width:280px;
    }
+
 .form-field:focus {
    background: #f2f7c3;
    color: #000000;
    }
+
 .form-container h2 {
    text-shadow: #fdf2e4 0 1px 0;
    font-size:18px;
@@ -134,15 +137,18 @@ a:hover{
    font-weight:bold;
    text-align:center;
     }
+
 .form-title {
    margin-bottom:10px;
    color: #75522a;
    text-shadow: #fdf2e4 0 1px 0;
    }
+
 .submit-container {
    margin:8px 0;
    text-align:right;
    }
+
 .submit-button {
    border: 1px solid #447314;
    background: #6aa436;
@@ -166,6 +172,7 @@ a:hover{
    text-decoration: none;
    vertical-align: middle;
    }
+
 .submit-button:hover {
    border: 1px solid #447314;
    text-shadow: #31540c 0 1px 0;
@@ -178,6 +185,7 @@ a:hover{
    background-image: -ms-linear-gradient(top, #8dc059 0%, #6aa436 100%);
    color: #fff;
    }
+
 .submit-button:active {
    text-shadow: #31540c 0 1px 0;
    border: 1px solid #447314;
