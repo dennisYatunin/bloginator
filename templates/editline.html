@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Story {{id}}{% endblock %}
+{% block content %}
+
+<div id="story">
+  <center>
+  <form method = "POST">
+    Edit line: <input type="text" name="line" class="line" value={{comment}}>
+    <br>
+    <br>
+    <input type="submit" name="button" value="submit" class="button">
+  </form>
+  </center>
+</div>
+
+{% endblock %}

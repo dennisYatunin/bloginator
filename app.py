@@ -90,7 +90,7 @@ def story(ID=None):
 @app.route('/editLine')
 @app.route('/editLine/<storyID>/<lineID>', methods=['GET', 'POST'])
 def editLine(storyID=None, lineID=None):
-    return render_template("story.html")
+    return render_template("editLine.html", comment="123")
 
 
 if __name__ == "__main__":
