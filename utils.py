@@ -1,72 +1,60 @@
-import sqlite3
+from pymongo import MongoClient
+from bson.objectid import ObjectId
 
-conn = sqlite3.connect("blog.db", check_same_thread=False)
-c = conn.cursor()
+#establish access to the mongo database
+client = MongoClient()
+db = client.bloginator
 
 #take in story id and return string of all lines for that story
 def getStory(story_id):
-	c.execute('SELECT data FROM lines WHERE story_id = ?;', (str(story_id)))
-	lines = c.fetchall()
-	#print lines
+	lines = db.lines.find({'story_id':ObjectId(story_id)})
 	story = []
 	for i in lines:
-		#print i
-		story += [ i[0] ]
-	return  story
+		story.append(i['data'])
+	return story
 
 
 def getTitle(story_id):
-	q = "SELECT title FROM stories WHERE rowid = ? ;"
-	c.execute(q, (story_id,))
-	title = c.fetchall()[0][0]
-	return title
+	return db.stories.find_one({'_id':ObjectId(story_id)})['title']
 
 
 def getAllIds():
-	q = "SELECT rowid FROM stories;"
-	c.execute(q)
-	raw_ids = c.fetchall()
+	raw_ids = db.stories.find()
 	ids = []
 	for i in raw_ids:
-		ids += [ i[0] ]
+		ids.append(str(i['_id']))
 	return ids
 
 
 def newLine(story_id, user_id, line):
-        q = "INSERT INTO lines VALUES (?, ?, ?);"
-        c.execute(q, (story_id, user_id, line))
-        conn.commit()
-
+	db.lines.insert_one({
+		'story_id':ObjectId(story_id),
+		'user_id':ObjectId(story_id),
+		'data':line
+		})
 
 
 def newStory(title):
-        q = "INSERT INTO stories VALUES ( ? );"
-        c.execute(q, (title,) )
-        q = "SELECT rowid FROM stories WHERE title = ? ;"
-        c.execute(q, (title,) )
-        result = c.fetchall()
-        conn.commit()
-        return result[0][0]
+	return str(db.stories.insert_one({
+		'title':title
+		}).inserted_id)
 
 #if valid cred, return user_id
 #else return -1
 def auth(user, pw):
-	q = "SELECT rowid FROM users where username = ? and pw = ?;"
-	c.execute(q, (user, pw) )
-	result = c.fetchall()
-	if len(result) == 1:
-		return result[0][0]
-
+	result = db.users.find_one({'username':user, 'pw':pw})
+	if result:
+		return str(result['_id'])
 	return -1
 
 #Checks if user exists in the database
 #If not, add them
 def addUser(user, pw):
-	c.execute("SELECT rowid FROM users where username = ? ;", (user,))
-	result = c.fetchall()
-	if len(result) > 0:
+	result = db.users.find_one({'username':user})
+	if result:
 		return False # user already exists
-	c.execute("INSERT INTO users VALUES (?, ?);", (user, pw))
-	conn.commit()
+	db.users.insert_one({
+		'username':user,
+		'pw':pw
+		})
 	return True
-

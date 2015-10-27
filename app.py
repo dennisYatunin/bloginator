@@ -69,7 +69,7 @@ def register():
 
 
 @app.route('/story')
-@app.route('/story/<int:ID>', methods=['GET','POST'])
+@app.route('/story/<ID>', methods=['GET','POST'])
 def story(ID = None):
     story = ""
     if ID == None: #or if id does not exist?
