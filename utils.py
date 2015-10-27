@@ -43,35 +43,63 @@ def newLine(story_id, user_id, line):
 		)
 
 
-def editLine(line_id, editedLine):
-	db.lines.update(
-		{'_id':ObjectId(line_id)},
-		{'$set':{'data':editedLine}}
-		)
-
-
-def removeLine(line_id):
-	db.lines.remove({
+def editLine(user_id, line_id, editedLine):
+	result = db.lines.find_one({
+		'user_id':ObjectId(user_id),
 		'_id':ObjectId(line_id)
 		})
+	if result:
+		db.lines.update(
+			{'_id':ObjectId(line_id)},
+			{'$set':{'data':editedLine}}
+			)
+		return True
+	return False
 
 
-def newStory(title):
+def removeLine(user_id, line_id):
+	result = db.lines.find_one({
+		'user_id':ObjectId(user_id),
+		'_id':ObjectId(line_id)
+		})
+	if result:
+		db.lines.remove({
+			'_id':ObjectId(line_id)
+			})
+		return True
+	return False
+
+
+def newStory(user_id, title):
 	return str(
 		db.stories.insert_one({
+			'user_id':user_id
 			'title':title
 			}).inserted_id
 		)
 
 
-def removeStory(story_id):
-	db.stories.remove({
+def removeStory(user_id, story_id):
+	result = db.stories.find_one({
+		'user_id':ObjectId(user_id),
 		'_id':ObjectId(story_id)
 		})
+<<<<<<< HEAD
+	if result:
+		db.stories.remove({
+			'_id':ObjectId(story_id)
+			})
+		db.lines.remove({
+			'story_id':ObjectId(story_id)
+			})
+		return True
+	return False
+=======
 	db.lines.remove({
 		'story_id':ObjectId(story_id)
 		})
         
+>>>>>>> f0dec3870c87f79adc4d7966661d2df97b020cfe
 
 # if valid cred, return user_id
 # else return -1
