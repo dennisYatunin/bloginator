@@ -7,6 +7,11 @@ body {
     font-family: "serif", Georgia;
 }
 
+/* adjust all text size, including forms */
+input[type=textarea] { 
+    width: 200%;
+    height: 200%
+}
 
 ul {
     list-style-type: none;
@@ -23,11 +28,9 @@ a {
     font-weight: bold;
 }
 
-
 a:hover{
     color: white;
 }
-
 
 .bar {
     padding-top: 10px;
