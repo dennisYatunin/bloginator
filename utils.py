@@ -13,23 +13,19 @@ client = MongoClient()
 db = client.bloginator
 
 #take in story id and return all lines for that story, along with their ids
-def getStory(story_id):
+def getStoryLines(story_id):
 	lines = db.lines.find({'story_id':ObjectId(story_id)})
 	story = []
 	for i in lines:
-		story.append([i['data'], str(i['_id'])])
+		story.append([i['data'], str(i['_id']), str(i['user_id'])])
 	return story
 
 
-def getTitle(story_id):
-	return db.stories.find_one({'_id':ObjectId(story_id)})['title']
-
-
-def getAllIds():
+def getAllStories():
 	raw_ids = db.stories.find()
 	ids = []
 	for i in raw_ids:
-		ids.append(str(i['_id']))
+		ids.append([i['title'], str(i['_id']), str(i['user_id'])])
 	return ids
 
 
