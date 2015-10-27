@@ -84,7 +84,6 @@ def removeStory(user_id, story_id):
 		'user_id':ObjectId(user_id),
 		'_id':ObjectId(story_id)
 		})
-<<<<<<< HEAD
 	if result:
 		db.stories.remove({
 			'_id':ObjectId(story_id)
@@ -94,15 +93,9 @@ def removeStory(user_id, story_id):
 			})
 		return True
 	return False
-=======
-	db.lines.remove({
-		'story_id':ObjectId(story_id)
-		})
-        
->>>>>>> f0dec3870c87f79adc4d7966661d2df97b020cfe
 
-# if valid cred, return user_id
-# else return -1
+#if valid cred, return user_id
+#else return -1
 def auth(user, pw):
 	result = db.users.find_one({'username':user})
 	if (
@@ -112,9 +105,8 @@ def auth(user, pw):
 		return str(result['_id'])
 	return -1
 
-
-# Checks if user exists in the database
-# If not, add them
+#Checks if user exists in the database
+#If not, add them
 def addUser(user, pw):
 	result = db.users.find_one({'username':user})
 	if result:
