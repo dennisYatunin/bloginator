@@ -12,12 +12,12 @@ secret_key = urandom(32);
 client = MongoClient()
 db = client.bloginator
 
-#take in story id and return string of all lines for that story
+#take in story id and return all lines for that story, along with their ids
 def getStory(story_id):
 	lines = db.lines.find({'story_id':ObjectId(story_id)})
 	story = []
 	for i in lines:
-		story.append(i['data'])
+		story.append([i['data'], str(i['_id'])])
 	return story
 
 
