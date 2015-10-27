@@ -119,7 +119,10 @@ def deleteLine(storyID=None, lineID=None):
 @app.route('/deleteStory/<storyID>')
 def deleteStory(storyID=None):
     if storyID is not None:
-        #Check if the story belongs to the user and deletes it
+        if utils.removeStory(session['userid'], storyID):
+            return redirect(url_for("home"))
+        else:
+            return render_template("home.html", error="Failure to delete story!")
     return redirect(url_for("home"))
 
 if __name__ == "__main__":
