@@ -9,8 +9,12 @@
 	    {% for line in story %}
 	    <tr>
 	      <td>{{ line[0] }}</td>
-	      <td> <button><a href="/editLine/{{id}}/{{line[1]}}">Edit</a></button></td>
-	      <td> <button><a href="/deleteLine/{{id}}/{{line[1]}}">Delete</a></button></td>
+	      <td style="color:gray"> - {{line[1]}} <td>
+	      {% if session.logged_in and session.username == line[1]%}
+	      <td> <button><a href="/editLine/{{id}}/{{line[2]}}">Edit</a></button></td>
+	      <td> <button><a href="/deleteLine/{{id}}/{{line[2]}}">Delete</a></button></td>
+	      {% endif %}
+
 	    </tr>
 	    {% endfor %}
     </table>
