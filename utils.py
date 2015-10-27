@@ -17,7 +17,7 @@ def getStoryLines(story_id):
 	lines = db.lines.find({'story_id':ObjectId(story_id)})
 	story = []
 	for i in lines:
-		story.append([i['data'], db.users.find_one({'user_id':ObjectId(i['user_id'])})['username'], str(i['_id'])])
+		story.append([i['data'], db.users.find_one({'_id':ObjectId(i['user_id'])})['username'], str(i['_id'])])
 	return story
 
 
@@ -25,7 +25,7 @@ def getAllStories():
 	raw_ids = db.stories.find()
 	ids = []
 	for i in raw_ids:
-		ids.append([i['title'], db.users.find_one({'user_id':ObjectId(i['user_id'])})['username'], str(i['_id'])])
+		ids.append([i['title'], db.users.find_one({'_id':ObjectId(i['user_id'])})['username'], str(i['_id'])])
 	return ids
 
 
