@@ -41,12 +41,16 @@ def logout():
 
 @app.route('/new', methods=['GET', 'POST'])
 def new():
+    title = ""
+    line = ""
     if request.method == 'POST' and session['logged_in']:
         title = request.form['title']
         line = request.form['line']
         storyId = utils.newStory(title)
         utils.newLine(storyId, session['userid'], line)
-    return render_template("newstory.html")
+        return redirect(url_for("home"))
+    else:
+        return render_template("newStory.html")
 
 
 # Very similar to log in, just checks whether the two passwords are the same
@@ -82,7 +86,14 @@ def story(ID=None):
         story = utils.getStory(ID)
     return render_template("story.html", id=ID, story=story)
 
+
+@app.route('/editLine')
+@app.route('/editLine/<storyID>/<lineID>', methods=['GET', 'POST'])
+def editLine(storyID=None, lineID=None):
+    return render_template("story.html")
+
+
 if __name__ == "__main__":
     app.debug = True
-    app.secret_key = "V\xd7\x94<\xb50\xca\n\xf9\xa0@\x17\x06(\x17-\x8f\xf39\x83\xa2\xfcm\x14"
+    app.secret_key = "test"  # "V\xd7\x94<\xb50\xca\n\xf9\xa0@\x17\x06(\x17-\x8f\xf39\x83\xa2\xfcm\x14"
     app.run('0.0.0.0', port=8000)
