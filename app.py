@@ -102,5 +102,5 @@ def editLine(storyID=None, lineID=None):
 
 if __name__ == "__main__":
     app.debug = True
-    app.secret_key = "test"  # "V\xd7\x94<\xb50\xca\n\xf9\xa0@\x17\x06(\x17-\x8f\xf39\x83\xa2\xfcm\x14"
+    app.secret_key = utils.secret_key
     app.run('0.0.0.0', port=8000)
