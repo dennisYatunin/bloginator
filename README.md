@@ -1,4 +1,5 @@
-# BLOGINATOR 2.0 The New and Improved Version (Duh)
+# BLOGINATOR 2.0
+The New and Improved Version (Duh)
 
 ## Description
 
