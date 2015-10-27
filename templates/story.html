@@ -3,11 +3,17 @@
 {% block title %}Story {{id}}{% endblock %}
 {% block content %}
 <!-- Shows current story, form to add new line -->
-	<div id="story"><p>
-	{% for line in story %}
-		{{ line }} <br>
-	{% endfor %}
+<div id="story"><p>
 
+    <table>
+	    {% for line in story %}
+	    <tr>
+	      <td>{{ line[0] }}</td>
+	      <td> <button><a href="/editLine/{{id}}/{{line[1]}}">Edit</a></button></td>
+	      <td> <button><a href="/deleteLine/{{id}}/{{line[1]}}">Delete</a></button></td>
+	    </tr>
+	    {% endfor %}
+    </table>
 	</p>
 
 	<br>

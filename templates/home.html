@@ -4,13 +4,17 @@
 {% block content %}
 
 <center>
-	<h1> Stories </h1>
+  <h1> Stories </h1>
+  <h3>{{error}}</h3>
 	<hr>
 	<ul>
-	{% for id in storyDict %}
-		<a href="/story/{{id}}" class ="home"><li>{{ storyDict[id] }}</li></a><br>
-	
+	  <table>
+	  {% for id in storyDict %}
+	<tr>
+	  <td><a href="/story/{{id}}" class ="home">{{ storyDict[id] }} </a></td>
+	  <td> <button><a href="/deleteStory/{{id}}">Delete</a></button> </td>
+	</tr>
 	{% endfor %}
-
+	</table>
 </center>
 {% endblock %}

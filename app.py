@@ -48,7 +48,7 @@ def new():
     if request.method == 'POST' and session['logged_in']:
         title = request.form['title']
         line = request.form['line']
-        storyId = utils.newStory(title)
+        storyId = utils.newStory(session["userid"], title)
         utils.newLine(storyId, session['userid'], line)
         return redirect(url_for("home"))
     else:
@@ -97,11 +97,12 @@ def story(ID=None):
 @app.route('/editLine')
 @app.route('/editLine/<storyID>/<lineID>', methods=['GET', 'POST'])
 def editLine(storyID=None, lineID=None):
-    if method == 'GET' and storyID is not None and lineID is not None:
+    if request.method == 'GET' and storyID is not None and lineID is not None and session["logged_in"]:
         #Retrivies the comment and provides a form to edit
-        return render_template("editLine.html", comment="")
-    elif method == 'POST' and storyID is not None and lineID is not None:
+        return render_template("editLine.html", comment=utils.getLine(lineID))
+    elif request.method == 'POST' and storyID is not None and lineID is not None:
         #Edits the line
+        utils.editLine(session["userid"],lineID,request.form['line'])
         return redirect(url_for("story", ID=storyID))
     else:
         return redirect(url_for("home"))
@@ -109,16 +110,19 @@ def editLine(storyID=None, lineID=None):
 @app.route('/deleteLine')
 @app.route('/deleteLine/<storyID>/<lineID>')
 def deleteLine(storyID=None, lineID=None):
-    if storyID is not None and lineID is not None:
+    if storyID is not None and lineID is not None and session["logged_in"]:
         #Checks if the story belongs to the user and deletes it
-        return redirect(url_for("story", ID=storyID))
+        if (utils.removeLine(session['userid'],lineID)):
+            return redirect(url_for("story", ID=storyID))
+        else:
+            return redirect(url_for("story", ID=storyID)) #render_template("story.html", ID=storyID, error="Failure to delete line!")
     else:
         return redirect(url_for("home"))
 
 @app.route('/deleteStory')
 @app.route('/deleteStory/<storyID>')
 def deleteStory(storyID=None):
-    if storyID is not None:
+    if storyID is not None and session["logged_in"]:
         if utils.removeStory(session['userid'], storyID):
             return redirect(url_for("home"))
         else:
