@@ -15,10 +15,10 @@ The New and Improved Version (Duh)
 ## Code Transformers, Improvers in Disguise
 |   | **Members** | **GitHub** | **Role** |
 |---|:-----------:|:----------:|:--------:|
-| 1 | Chun Hung Li   | [`@TyranitarShawn`](https://github.com/TyranitarShawn) | N/A |
-| 2 | Dennis Yatunin | [`@dennisYatunin`](https://github.com/dennisYatunin) | Backend / Middleware |
-| 3 | Dillon Zhang   | [`@dillzhang`](https://github.com/dillzhang) | Middleware / UX |
-| 4 | Samuel Zhang   | [`@CodeSammich`](https://github.com/CodeSammich) | Leader |
+| <img src="images/shawn.jpg" width="100" height="100" /> | Chun Hung Li   | [`@TyranitarShawn`](https://github.com/TyranitarShawn) | N/A |
+| <img src="images/dennis.jpg" width="100" height="100" /> | Dennis Yatunin | [`@dennisYatunin`](https://github.com/dennisYatunin) | Backend / Middleware |
+| <img src="images/dillon.jpg" width="100" height="100" /> | Dillon Zhang   | [`@dillzhang`](https://github.com/dillzhang) | Middleware / UX |
+| <img src="images/samuel.jpg" width="100" height="100" /> | Samuel Zhang   | [`@CodeSammich`](https://github.com/CodeSammich) | Leader |
 
 
 ## How to Use
