@@ -4,7 +4,7 @@ The New and Improved Version (Duh)
 ## Description
 
 
-## Originial Creat0rs 
+## Originial Creators 
 |                                       |   **Member**   |                   **GitHub**                 |            **Role**            |
 |---------------------------------------|:--------------:|:--------------------------------------------:|:------------------------------:|
 | <img src="images/yasmeenroumie.png" width="100" height="100" /> | Yasmeen Roumie   |[`@y4smeen`](https://github.com/y4smeen)        | Leader  |
@@ -13,12 +13,12 @@ The New and Improved Version (Duh)
 | <img src="images/nicholasyang.png" width="100" height="100" />  | Nicholas Yang  |[`@NicholasLYang`](https://github.com/NicholasLYang)        | Middleware  |
 
 ## Code Transformers, Improvers in Disguise
-| | **Members** | **GitHub** | **Role** |
-|-|:-----------:|:----------:|:--------:|
-| | Chun Hung Li   | [`@TyranitarShawn`](https://github.com/TyranitarShawn) | N/A |
-| | Dennis Yatunin | [`@dennisYatunin`](https://github.com/dennisYatunin) | Backend / Middleware |
-| | Dillon Zhang   | [`@dillzhang`](https://github.com/dillzhang) | Middleware / UX |
-| | Samuel Zhang   | [`@CodeSammich`](https://github.com/CodeSammich) | Leader |
+|   | **Members** | **GitHub** | **Role** |
+|---|:-----------:|:----------:|:--------:|
+| 1 | Chun Hung Li   | [`@TyranitarShawn`](https://github.com/TyranitarShawn) | N/A |
+| 2 | Dennis Yatunin | [`@dennisYatunin`](https://github.com/dennisYatunin) | Backend / Middleware |
+| 3 | Dillon Zhang   | [`@dillzhang`](https://github.com/dillzhang) | Middleware / UX |
+| 4 | Samuel Zhang   | [`@CodeSammich`](https://github.com/CodeSammich) | Leader |
 
 
 ## How to Use
