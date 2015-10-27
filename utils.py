@@ -73,7 +73,7 @@ def removeLine(user_id, line_id):
 def newStory(user_id, title):
 	return str(
 		db.stories.insert_one({
-			'user_id':user_id
+			'user_id':user_id,
 			'title':title
 			}).inserted_id
 		)
