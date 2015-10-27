@@ -101,13 +101,13 @@ def addUser(user, pw):
 def registrationError(user, pw, pw2):
 	if pw != pw2:
 		return 'Error: Passwords are not the same.'
-	if len(username) < 1:
+	if len(user) < 1:
 		return 'Error: Username must be at least 1 character long.'
-	if len(password) < 8:
+	if len(pw) < 8:
 		return 'Error: Password must be at least 8 characters long.'
 	if not (
-		bool(search('[0-9]', password)) and
-		bool(search('[a-zA-Z]', password))
+		bool(search('[0-9]', pw)) and
+		bool(search('[a-zA-Z]', pw))
 		):
 		return 'Error: Password must contain both letters and digits.'
 	return None
