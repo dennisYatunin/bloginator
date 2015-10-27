@@ -100,6 +100,15 @@ def editLine(storyID=None, lineID=None):
     return render_template("editLine.html", comment="123")
 
 
+@app.route('/deleteLine')
+@app.route('/deleteLine/<storyID>/<lineID>')
+def deleteLine(storyID=None, lineID=None):
+    if storyID is not None and lineID is not None:
+        
+        return redirect(url_for("story", ID=storyID))
+    else:
+        return redirect(url_for("home"))
+
 if __name__ == "__main__":
     app.debug = True
     app.secret_key = utils.secret_key
