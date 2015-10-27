@@ -97,17 +97,30 @@ def story(ID=None):
 @app.route('/editLine')
 @app.route('/editLine/<storyID>/<lineID>', methods=['GET', 'POST'])
 def editLine(storyID=None, lineID=None):
-    return render_template("editLine.html", comment="123")
-
+    if method == 'GET' and storyID is not None and lineID is not None:
+        #Retrivies the comment and provides a form to edit
+        return render_template("editLine.html", comment="")
+    elif method == 'POST' and storyID is not None and lineID is not None:
+        #Edits the line
+        return redirect(url_for("story", ID=storyID))
+    else:
+        return redirect(url_for("home"))
 
 @app.route('/deleteLine')
 @app.route('/deleteLine/<storyID>/<lineID>')
 def deleteLine(storyID=None, lineID=None):
     if storyID is not None and lineID is not None:
-        
+        #Checks if the story belongs to the user and deletes it
         return redirect(url_for("story", ID=storyID))
     else:
         return redirect(url_for("home"))
+
+@app.route('/deleteStory')
+@app.route('/deleteStory/<storyID>')
+def deleteStory(storyID=None):
+    if storyID is not None:
+        #Check if the story belongs to the user and deletes it
+    return redirect(url_for("home"))
 
 if __name__ == "__main__":
     app.debug = True
