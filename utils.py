@@ -70,10 +70,14 @@ def removeLine(user_id, line_id):
 	return False
 
 
+def getLine(line_id):
+	return db.lines.find_one({'_id':ObjectId(line_id)})['data']
+
+
 def newStory(user_id, title):
 	return str(
 		db.stories.insert_one({
-			'user_id':user_id,
+			'user_id':user_id
 			'title':title
 			}).inserted_id
 		)
