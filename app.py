@@ -6,11 +6,8 @@ app = Flask(__name__)
 @app.route('/')
 @app.route('/home')
 def home():
-    valid_stories = utils.getAllIds()
-    storyDict = {}
-    for i in valid_stories:
-        storyDict[i] = utils.getTitle(i)
-    return render_template("home.html", storyDict=storyDict)
+    storyList = utils.getAllStories()
+    return render_template("home.html", storyList=storyList)
 
 # Checks the username and password with the utils function auth()
 @app.route('/login', methods=['GET','POST'])
@@ -19,16 +16,13 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
 
-        userid = utils.auth(username, password)
-        if userid != -1:
+        username = utils.auth(username, password)
+        if username != -1:
             session['logged_in'] = True
-            session['userid'] = userid
+            session['username'] = username
             return redirect(url_for('home'))
         else:
-            return render_template(
-                "login.html",
-                err="Incorrect password or username"
-                )
+            return render_template("login.html",err="Incorrect password or username")
     else:
         return render_template("login.html")
 
@@ -37,7 +31,7 @@ def login():
 @app.route("/logout")
 def logout():
     session['logged_in'] = False
-    session.pop('userid', None)
+    session.pop('username', None)
     return redirect("login")
 
 
@@ -48,8 +42,8 @@ def new():
     if request.method == 'POST' and session['logged_in']:
         title = request.form['title']
         line = request.form['line']
-        storyId = utils.newStory(session["userid"], title)
-        utils.newLine(storyId, session['userid'], line)
+        storyId = utils.newStory(session["username"], title)
+        utils.newLine(storyId, session['username'], line)
         return redirect(url_for("home"))
     else:
         return render_template("newStory.html")
@@ -70,11 +64,10 @@ def register():
             print username + " " + password
             addedUser = utils.addUser(username, password) #could user be added
             if (not addedUser): #user already existed in the database.
-                return render_template(
-                    "register.html",
-                    err="Error, user already exists"
-                    )
-            return redirect(url_for('new'))
+                return render_template("register.html", err="Error, user already exists")
+            session['logged_in'] = True
+            session['username'] = username
+            return redirect(url_for('home'))
     else:
         return render_template("register.html")
 
@@ -89,8 +82,8 @@ def story(ID=None):
         newline = ""
         if (request.method == 'POST' and session['logged_in']):
             newline = request.form['line']
-            utils.newLine(ID, session['userid'], newline)
-        story = utils.getStory(ID)
+            utils.newLine(ID, session['username'], newline)
+        story = utils.getStoryLines(ID)
     return render_template("story.html", id=ID, story=story)
 
 
@@ -102,7 +95,7 @@ def editLine(storyID=None, lineID=None):
         return render_template("editLine.html", comment=utils.getLine(lineID))
     elif request.method == 'POST' and storyID is not None and lineID is not None:
         #Edits the line
-        utils.editLine(session["userid"],lineID,request.form['line'])
+        utils.editLine(session["username"],lineID,request.form['line'])
         return redirect(url_for("story", ID=storyID))
     else:
         return redirect(url_for("home"))
@@ -112,7 +105,7 @@ def editLine(storyID=None, lineID=None):
 def deleteLine(storyID=None, lineID=None):
     if storyID is not None and lineID is not None and session["logged_in"]:
         #Checks if the story belongs to the user and deletes it
-        if (utils.removeLine(session['userid'],lineID)):
+        if (utils.removeLine(session['username'],lineID)):
             return redirect(url_for("story", ID=storyID))
         else:
             return redirect(url_for("story", ID=storyID)) #render_template("story.html", ID=storyID, error="Failure to delete line!")
@@ -123,7 +116,7 @@ def deleteLine(storyID=None, lineID=None):
 @app.route('/deleteStory/<storyID>')
 def deleteStory(storyID=None):
     if storyID is not None and session["logged_in"]:
-        if utils.removeStory(session['userid'], storyID):
+        if utils.removeStory(session['username'], storyID):
             return redirect(url_for("home"))
         else:
             return render_template("home.html", error="Failure to delete story!")

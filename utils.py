@@ -17,7 +17,7 @@ def getStoryLines(story_id):
 	lines = db.lines.find({'story_id':ObjectId(story_id)})
 	story = []
 	for i in lines:
-		story.append([i['data'], db.users.find_one({'_id':ObjectId(i['user_id'])})['username'], str(i['_id'])])
+		story.append([i['data'], i['username'], str(i['_id'])])
 	return story
 
 
@@ -25,23 +25,23 @@ def getAllStories():
 	raw_ids = db.stories.find()
 	ids = []
 	for i in raw_ids:
-		ids.append([i['title'], db.users.find_one({'_id':ObjectId(i['user_id'])})['username'], str(i['_id'])])
+		ids.append([i['title'], i['username'], str(i['_id'])])
 	return ids
 
 
-def newLine(story_id, user_id, line):
+def newLine(story_id, user, line):
 	return str(
 		db.lines.insert_one({
 			'story_id':ObjectId(story_id),
-			'user_id':ObjectId(user_id),
+			'username':user,
 			'data':line
 			}).inserted_id
 		)
 
 
-def editLine(user_id, line_id, editedLine):
+def editLine(user, line_id, editedLine):
 	result = db.lines.find_one({
-		'user_id':ObjectId(user_id),
+		'username':user,
 		'_id':ObjectId(line_id)
 		})
 	if result:
@@ -53,9 +53,9 @@ def editLine(user_id, line_id, editedLine):
 	return False
 
 
-def removeLine(user_id, line_id):
+def removeLine(user, line_id):
 	result = db.lines.find_one({
-		'user_id':ObjectId(user_id),
+		'username':user,
 		'_id':ObjectId(line_id)
 		})
 	if result:
@@ -70,18 +70,18 @@ def getLine(line_id):
 	return db.lines.find_one({'_id':ObjectId(line_id)})['data']
 
 
-def newStory(user_id, title):
+def newStory(user, title):
 	return str(
 		db.stories.insert_one({
-			'user_id':ObjectId(user_id),
+			'username':user,
 			'title':title
 			}).inserted_id
 		)
 
 
-def removeStory(user_id, story_id):
+def removeStory(user, story_id):
 	result = db.stories.find_one({
-		'user_id':ObjectId(user_id),
+		'username':user,
 		'_id':ObjectId(story_id)
 		})
 	if result:
@@ -102,7 +102,7 @@ def auth(user, pw):
 		result and
 		sha512((pw + result['salt']) * 10000).hexdigest() == result['hash']
 		):
-		return str(result['_id'])
+		return user
 	return -1
 
 #Checks if user exists in the database

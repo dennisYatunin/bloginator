@@ -6,15 +6,21 @@
 <center>
   <h1> Stories </h1>
   <h3>{{error}}</h3>
-	<hr>
-	<ul>
-	  <table>
-	  {% for id in storyDict %}
-	<tr>
-	  <td><a href="/story/{{id}}" class ="home">{{ storyDict[id] }} </a></td>
-	  <td> <button><a href="/deleteStory/{{id}}">Delete</a></button> </td>
-	</tr>
-	{% endfor %}
-	</table>
+  <hr>
+  <ul>
+    <table>
+      {% for item in storyList %}
+      <tr>
+	
+	<td> <a href="/story/{{item[2]}}" class ="home">{{ item[0] }} </a></td>
+	
+	<td style="color:gray"> - {{item[1]}} </td>
+	
+	{% if session.username == item[1] %}
+	<td> <button><a href="/deleteStory/{{item[2]}}">Delete</a></button> </td>
+	{% endif %}
+      </tr>
+      {% endfor %}
+    </table>
 </center>
 {% endblock %}
