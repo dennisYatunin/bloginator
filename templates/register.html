@@ -8,28 +8,38 @@
 
 <body>
 <center>
-<h1>Register</h1>
 
-<hr>
 {% if err %}
 <h3>{{err}}</h3>
 <hr>
 {% endif %}
 
+<form class="form-container" action ="/login" method="POST">
+<div class="form-title"><h2>Register</h2></div>
+<div class="form-title">Username</div>
+<input class="form-field" type="text" name="username" placeholder="Username" required /><br />
+<div class="form-title">Password</div>
+<input class="form-field" type="password" name="password" placeholder="Password" required /><br />
+<div class="form-title"> Re-enter </div> 
+<input class="form-field" type="password" name="password2" placeholder="Reenter Password" required / <br/>
+<div class="submit-container">
+<input class="submit-button" name="button" type="submit" value="Submit" />
+</div>
+</form>
 
+<!--
 <form  method="POST">
 <input type="text" name="username" placeholder="Username" required>
 <br>
 <input type="password" name="password" placeholder="Password" required>
 <br>
-<input type="password" name ="password2" placeholder ="Reenter
-Password" required>
+<input type="password" name ="password2" placeholder ="Reenter Password" required>
 <br><br>
 
 <input type="submit" name="button" value="submit" class="button">
 
 </form>
-
+-->
 
 </center>
 </body>
