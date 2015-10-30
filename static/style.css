@@ -4,7 +4,7 @@ body {
     padding: 0;
     margin: 0;
     font-size: 17px;
-    font-family: "serif", Georgia;
+    font-family: "sans-serif", Helvetica;
 }
 
 /* adjust all text size, including forms */
@@ -88,24 +88,13 @@ a:hover{
 }
 
 .form-container {
-   border: 5px solid #ffdab2;
-   background: #c9b7a2;
-   background: -webkit-gradient(linear, left top, left bottom, from(#ffe5c9), to(#c9b7a2));
-   background: -webkit-linear-gradient(top, #ffe5c9, #c9b7a2);
-   background: -moz-linear-gradient(top, #ffe5c9, #c9b7a2);
-   background: -ms-linear-gradient(top, #ffe5c9, #c9b7a2);
-   background: -o-linear-gradient(top, #ffe5c9, #c9b7a2);
-   background-image: -ms-linear-gradient(top, #ffe5c9 0%, #c9b7a2 100%);
+   border: 5px solid #A2D3B6;
+   background: #4C996B;
    -webkit-border-radius: 18px;
    -moz-border-radius: 18px;
    border-radius: 18px;
-   -webkit-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
-   -moz-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
-   box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
-   font-family: 'Helvetica Neue',Helvetica,sans-serif;
    text-decoration: none;
    vertical-align: middle;
-   min-width:300px;
    padding:20px;
    width:300px;
    }
