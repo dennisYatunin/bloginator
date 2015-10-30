@@ -57,7 +57,8 @@ def register():
         username = request.form['username']
         password = request.form['password']
         password2 = request.form['password2']
-        error = utils.registrationError(username, password, password2)
+        email = request.form["email"]
+        error = utils.registrationError(username, password, password2, email)
         if error:
             return render_template("register.html", err=error)
         else:
