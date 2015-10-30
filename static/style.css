@@ -107,8 +107,8 @@ a:hover{
    }
 
 .form-field:focus {
-   background: #f2f7c3;
-   color: #ffffff;
+   background: #ffffff;
+   color: #000000;
    }
 
 .form-container h2 {
@@ -129,8 +129,7 @@ a:hover{
    }
 
 .submit-button {
-   background: #A2D3B6;
-   background-image: -ms-linear-gradient(top, #8dc059 0%, #6aa436 100%);
+   background: #297A4A;
    -webkit-border-radius: 8px;
    -moz-border-radius: 8px;
    border-radius: 8px;
