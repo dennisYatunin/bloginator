@@ -108,7 +108,7 @@ a:hover{
 
 .form-field:focus {
    background: #f2f7c3;
-   color: #000000;
+   color: #ffffff;
    }
 
 .form-container h2 {
@@ -120,7 +120,7 @@ a:hover{
 
 .form-title {
    margin-bottom:10px;
-   color: #000000;
+   color: #ffffff;
    }
 
 .submit-container {
@@ -129,13 +129,12 @@ a:hover{
    }
 
 .submit-button {
-   border: 1px solid #447314;
-   background: #6aa436;
+   background: #A2D3B6;
    background-image: -ms-linear-gradient(top, #8dc059 0%, #6aa436 100%);
    -webkit-border-radius: 8px;
    -moz-border-radius: 8px;
    border-radius: 8px;
-   color: #000000;
+   color: #ffffff;
    padding: 8.5px 18px;
    font-size: 14px;
    text-decoration: none;
