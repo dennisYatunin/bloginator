@@ -4,6 +4,9 @@ from bson.objectid import ObjectId
 from hashlib import sha512
 from uuid import uuid4
 from re import search
+import smtplib
+from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
 
 # a 32-byte key that should be used to secure the Flask session
 secret_key = urandom(32);
@@ -107,7 +110,7 @@ def auth(user, pw):
 
 #Checks if user exists in the database
 #If not, add them
-def addUser(user, pw):
+def addUser(user, pw, email):
 	result = db.users.find_one({'username':user})
 	if result:
 		return False # user already exists
@@ -117,6 +120,15 @@ def addUser(user, pw):
 		'salt':salt,
 		'hash':sha512((pw + salt) * 10000).hexdigest()
 		})
+	msg = MIMEMultipart()
+	msg['Subject'] = 'Confirmation Email'
+	me = 'dyatun@gmail.com'
+	msg['From'] = me
+	msg['To'] = email
+	msg.preamble = 'Congrats on signing up!'
+	s = smtplib.SMTP('localhost')
+	s.sendmail(me, email, msg.as_string())
+	s.quit()
 	return True
 
 
