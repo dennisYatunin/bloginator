@@ -98,8 +98,6 @@ a:hover{
    }
 
 .form-field {
-   border: 2px solid #c9b7a2;
-   background: #e4d5c3;
    -webkit-border-radius: 10px;
    -moz-border-radius: 10px;
    border-radius: 10px;
