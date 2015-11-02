@@ -62,16 +62,15 @@ a:hover{
 }
 
 .button {
-  display: block;
-  height: 30px;
-  width: 125px;
   background: #297A4A;
-  border: 2px solid rgba(33, 68, 72, 0.59);
-  color: rgba(0, 0, 0, 0.55);
-  text-align: center;
-  font: bold 1em/15px Georgia, serif;
-  background: linear-gradient(top, #34696f, #2f5f63);
-  border-radius: 25px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 8.5px 18px;
+  font-size: 14px;
+  text-decoration: none;
+  vertical-align: middle;
 }
 
 .line {
