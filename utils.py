@@ -120,7 +120,8 @@ def addUser(user, pw, email):
 		'salt':salt,
 		'hash':sha512((pw + salt) * 10000).hexdigest()
 		})
-	msg = MIMEMultipart()
+        """
+        msg = MIMEMultipart()
 	msg['Subject'] = 'Confirmation Email'
 	me = 'dyatun@gmail.com'
 	msg['From'] = me
@@ -129,6 +130,7 @@ def addUser(user, pw, email):
 	s = smtplib.SMTP('localhost')
 	s.sendmail(me, email, msg.as_string())
 	s.quit()
+        """
 	return True
 
 

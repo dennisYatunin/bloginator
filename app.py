@@ -58,12 +58,12 @@ def register():
         password = request.form['password']
         password2 = request.form['password2']
         email = request.form["email"]
-        error = utils.registrationError(username, password, password2, email)
+        error = utils.registrationError(username, password, password2)
         if error:
             return render_template("register.html", err=error)
         else:
             print username + " " + password
-            addedUser = utils.addUser(username, password) #could user be added
+            addedUser = utils.addUser(username, password, email) #could user be added
             if (not addedUser): #user already existed in the database.
                 return render_template("register.html", err="Error, user already exists")
             session['logged_in'] = True
