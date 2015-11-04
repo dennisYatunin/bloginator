@@ -7,8 +7,8 @@
 {% if session.logged_in %}
 <form method ="POST">
 	<table>
-		<tr><td>Story Title:</td><td><input type="text" name="title"></td></tr>
-		<tr><td>First Line:</td><td><input type="text" name ="line" class ="line"></td></tr>
+		<tr><td>Story Title:</td><td><input type="text" name="title" required></td></tr>
+		<tr><td>First Line:</td><td><input type="text" name ="line" class ="line" required></td></tr>
 		<tr><td><br></td></tr>
 		<tr><td><input type="submit" name="submit" class="submit-button"></td></tr>
 	</div>
